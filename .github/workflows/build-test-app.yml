@@ -1,0 +1,34 @@
+name: Build VCAM Photo Test
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'VCAMPhotoTest/**'
+      - 'VCAMPhotoTest.xcodeproj/**'
+      - '.github/workflows/build-test-app.yml'
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build unsigned app
+        run: |
+          xcodebuild \
+            -project VCAMPhotoTest.xcodeproj \
+            -scheme VCAMPhotoTest \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+      - name: Package unsigned IPA
+        run: |
+          mkdir -p Payload
+          cp -R build/Build/Products/Release-iphoneos/VCAMPhotoTest.app Payload/
+          /usr/bin/zip -r VCAMPhotoTest-unsigned.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: VCAMPhotoTest-unsigned-IPA
+          path: VCAMPhotoTest-unsigned.ipa
+          if-no-files-found: error
