@@ -45,7 +45,14 @@ struct ContentView: View {
                         .font(.headline)
                         .foregroundStyle(.white)
                         .padding(16)
-                        .background(Color.orange.gradient, in: RoundedRectangle(cornerRadius: 16))
+                        .background(
+    LinearGradient(
+        colors: [.orange, .red],
+        startPoint: .topLeading,
+        endPoint: .bottomTrailing
+    ),
+    in: RoundedRectangle(cornerRadius: 16)
+)
                     }
                     .disabled(isWorking)
 
