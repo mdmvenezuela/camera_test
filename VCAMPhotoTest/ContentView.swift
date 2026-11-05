@@ -1,7 +1,9 @@
 import SwiftUI
 import UniformTypeIdentifiers
 import CoreImage
-import CoreImage.CIFilterBuiltins
+import CoreVideo
+import ImageIO
+import CoreGraphics
 
 struct ContentView: View {
     @State private var showingImporter = false
