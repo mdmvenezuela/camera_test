@@ -11,7 +11,7 @@
     <key>UILaunchScreen</key><dict/>
     <key>UIRequiredDeviceCapabilities</key><array><string>arm64</string></array>
     <key>UISupportedInterfaceOrientations</key>
+	<key>CFBundleExecutable</key><string>VCAMPhotoTest</string>
     <array><string>UIInterfaceOrientationPortrait</string></array>
-<key>CFBundleExecutable</key><string>VCAMPhotoTest</string>
 </dict>
 </plist>
